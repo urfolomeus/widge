@@ -73,4 +73,21 @@ RSpec.describe User do
       end
     end
   end
+
+  describe 'on create' do
+    describe 'API token' do
+      it 'is generated as a UUID' do
+        user = Fabricate.build(:user)
+        expect(user.api_token).to be_nil
+        user.save!
+        expect(user.api_token).to match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/)
+      end
+
+      it 'is persisted' do
+        generated_user = Fabricate(:user)
+        found_user = User.find_by(email: generated_user.email)
+        expect(generated_user.api_token).to eql(found_user.api_token)
+      end
+    end
+  end
 end
