@@ -1,4 +1,4 @@
-[ ] user can get an API token
+[x] user can get an API token
 [ ] user can log in via API
 [ ] user can create a widget
 [ ] user can edit a widget
