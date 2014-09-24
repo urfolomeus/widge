@@ -1,0 +1,17 @@
+[ ] user can get an API token
+[ ] user can log in via API
+[ ] user can create a widget
+[ ] user can edit a widget
+[ ] user can delete a widget
+[ ] user can be admin
+[ ] admin can create a widget
+[ ] admin can edit a widget
+[ ] admin can delete a widget
+[ ] admin can approve widget
+[ ] admin can view submitted widgets
+[ ] admin can create new dashboard
+[ ] admin can edit dashboard
+[ ] admin can delete dashboard
+[ ] widgets belong to dashboards
+[ ] user can only access their own widgets
+[ ] admin can access all widgets
