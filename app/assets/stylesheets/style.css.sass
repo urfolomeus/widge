@@ -1,5 +1,9 @@
+html, body
+  overflow-x: hidden
+
 body
   padding-top: 70px
+  background-color: #ccc !important
 
 .beta
   font-size: smaller
@@ -35,14 +39,24 @@ body
     &:hover
       color: lighten(green, 20)
 
-form
+form, .form-title
   max-width: 750px
+  margin: 0 auto 10px
+
+form
+  background-color: white
+  padding: 1em
+  border-radius: 5px
 
   label
     min-width: 230px
 
+    &.control-label
+      padding-right: 5px
+
   .actions
     float: right
+    padding-right: 15px
 
     input[type="submit"]
       margin-left: 10px
