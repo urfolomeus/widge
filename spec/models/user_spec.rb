@@ -50,6 +50,11 @@ RSpec.describe User do
     end
 
     context 'password' do
+      it 'must be present' do
+        subject.valid?
+        expect(subject.errors[:password]).to include("can't be blank")
+      end
+
       it 'must be at least 3 characters long' do
         subject.valid?
         expect(subject.errors[:password]).to include("is too short (minimum is 3 characters)")

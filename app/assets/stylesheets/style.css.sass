@@ -1,0 +1,49 @@
+body
+  padding-top: 70px
+
+.beta
+  font-size: smaller
+  margin: 0 3px
+
+.alert, .notice
+  padding: 15px
+  border: 1px solid transparent
+  border-radius: 4px
+  color: white
+  margin: 0 16px 20px 16px
+
+  .close
+    text-shadow: 0 0 0 #fff
+    margin-top: -2px
+    opacity: 1
+
+.alert
+  background: red
+
+  .close
+    color: tan
+
+    &:hover
+      color: lighten(tan, 15)
+
+.notice
+  background: green
+
+  .close
+    color: lighten(green, 10)
+
+    &:hover
+      color: lighten(green, 20)
+
+form
+  max-width: 750px
+
+  label
+    min-width: 230px
+
+  .actions
+    float: right
+
+    input[type="submit"]
+      margin-left: 10px
+

@@ -1,0 +1,44 @@
+!!! 5
+%html
+  %head
+    %title WidMan - beta
+
+    %meta(name="viewport" content="width=device-width, initial-scale=1")
+
+    = stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track' => true)
+
+    = javascript_include_tag('application', 'data-turbolinks-track' => true)
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-fixed-top.navbar-inverse(role="navigation")
+      .navbar-header
+        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand(href="/")
+          WidMan
+          %span.beta beta
+      .collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li{class: active_if_controller_path('welcome') }
+            %a(href="/") Home
+          - if logged_in?
+            %li
+              = link_to 'Sign Out', '/signout', method: :delete
+          - else
+            %li{class: active_if_controller_path('users') }
+              %a(href="/signup") Sign Up
+            %li{class: active_if_controller_path('sessions') }
+              %a(href="/signin") Sign In
+
+    .flashes
+      - flash.each do |class_name, message|
+        %div{class: class_name}
+          = message
+          %span.close &times;
+
+    .container
+      = yield
+
