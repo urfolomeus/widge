@@ -18,10 +18,11 @@ RSpec.describe UsersController do
 
   describe 'POST create' do
     let(:user_params) { Fabricate.attributes_for(:user) }
-    let(:stub_user)   { double('user', save: true) }
+    let(:stub_user)   { double('user', save: true, email: user_params[:email]) }
 
     before :each do
       allow(User).to receive(:new).and_return(stub_user)
+      allow(controller).to receive(:login)
       post :create, user: user_params
     end
 
@@ -34,8 +35,12 @@ RSpec.describe UsersController do
     end
 
     context 'when successful' do
+      it 'logs the user in' do
+        expect(controller).to have_received(:login).with(user_params[:email], user_params[:password])
+      end
+
       it 'sets a flash notice' do
-        expect(flash[:notice]).to eql('Please click the link in the activation email we have just sent in order to continue.')
+        expect(flash[:notice]).to eql('Successfully signed up.')
       end
 
       it 'redirects to the root page' do
@@ -52,47 +57,4 @@ RSpec.describe UsersController do
       end
     end
   end
-
-  # describe 'GET activate' do
-  #   let(:user)       { Fabricate.build(:pending_user) }
-  #   let(:successful) { true }
-  #
-  #   before :each do
-  #     allow(User).to receive(:load_from_activation_token).and_return(user)
-  #     allow(user).to receive(:activate!).and_return(successful)
-  #     get :activate, id: '123abc'
-  #   end
-  #
-  #   xit 'fetches the user' do
-  #     expect(User).to have_received(:load_from_activation_token).with('123abc')
-  #   end
-  #
-  #   xit 'assigns the user' do
-  #     expect(assigns[:user]).to eql(user)
-  #   end
-  #
-  #   context 'when successful' do
-  #     let(:successful) { true }
-  #
-  #     xit 'activates the user' do
-  #       expect(user).to have_received(:activate!)
-  #     end
-  #
-  #     xit 'redirects to the sign in page' do
-  #       expect(response).to redirect_to(:login)
-  #     end
-  #
-  #     xit 'displays a success notice' do
-  #       expect(flash[:notice]).to eq('You have successfully activated your account. Please sign in.')
-  #     end
-  #   end
-  #
-  #   context 'when not successful' do
-  #     let(:successful) { false }
-  #
-  #     xit 'is not authenticated' do
-  #       expect(response.status).to eql(302)
-  #     end
-  #   end
-  # end
 end

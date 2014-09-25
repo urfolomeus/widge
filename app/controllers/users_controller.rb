@@ -6,15 +6,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to :root, notice: 'Please click the link in the activation email we have just sent in order to continue.'
+      login(@user.email, user_params['password'])
+      redirect_to :root, notice: 'Successfully signed up.'
     else
       render :new
     end
   end
-
-  # def activate
-  #
-  # end
 
   private
 
