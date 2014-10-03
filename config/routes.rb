@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   post   '/widgets/:widget' => 'widgets#send_data'
 
+  get    '/info' => 'info#show', as: :info
+
   root 'welcome#index'
 end

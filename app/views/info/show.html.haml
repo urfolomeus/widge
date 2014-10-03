@@ -1,0 +1,48 @@
+- url = "http://widge.herokuapp.com/widgets/WIDGET_NAME"
+
+%h1 How to use the proxy
+
+%p
+  In order to post data to a widget on the dashboard, you need to go via this proxy.
+  In order to do so you will need the following ingredients:
+
+%ol
+  %li
+    %strong A widget
+    \- Ask Alan, Andrew or Dave to add a widget for you. They will then give you a WIDGET_NAME.
+  %li
+    %strong An API key
+    \- your key is
+    %strong= current_user.api_token
+
+%p
+  You can then send this by sending a POST request to
+  %strong= url
+  with the appropriate JSON.
+
+%h2 Examples
+
+%h3 Clock
+
+%h3 Comments
+
+%h3 Graph
+
+%h3 iframe
+
+%h3 Image
+
+%h3 List
+
+%h3 Meter
+
+%h3 Number
+
+%h3 Text
+
+%pre
+  = "$ curl -d '{ \"token\" : \"#{current_user.api_token}\", \"data\" : { \"title\" : \"Hello\", \"title\" : \"Sample text\" } }' \\"
+  %br
+  = "#{url}"
+
+
