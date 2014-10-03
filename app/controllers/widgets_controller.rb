@@ -1,7 +1,6 @@
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:send_data]
 
-  TOKEN = 'YOUR_AUTH_TOKEN'
   URL = "http://5.79.16.170"
 
   def send_data
@@ -13,7 +12,7 @@ class WidgetsController < ApplicationController
 
     if user
       url = "/widgets/#{params[:widget]}"
-      data["auth_token"] = TOKEN
+      data["auth_token"] = ENV["TOKEN"]
 
       conn = Faraday.new(:url => 'http://5.79.16.170') do |faraday|
         faraday.request  :url_encoded             # form-encode POST params
