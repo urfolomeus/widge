@@ -1,5 +1,5 @@
 [x] user can get an API token
-[ ] user can log in via API
+[ ] user can view their widgets
 [ ] user can create a widget
 [ ] user can edit a widget
 [ ] user can delete a widget
@@ -15,3 +15,4 @@
 [ ] widgets belong to dashboards
 [ ] user can only access their own widgets
 [ ] admin can access all widgets
+[ ] user can log in via API

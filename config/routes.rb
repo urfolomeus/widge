@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   post   '/sessions' => 'sessions#create'
   delete '/signout'  => 'sessions#destroy'
 
+  post   '/widgets/:widget' => 'widgets#send_data'
+
   root 'welcome#index'
 end
