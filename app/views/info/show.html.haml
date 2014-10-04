@@ -1,74 +1,121 @@
 - url = "http://widge.herokuapp.com/widgets/WIDGET_NAME"
 
-%h1 How to use the proxy
+.intro
+  %h1 How to use the proxy
 
-%p
-  In order to post data to a widget on the dashboard, you need to go via this proxy.
-  In order to do so you will need the following ingredients:
+  %p
+    In order to post data to a widget on the dashboard, you need to go via this proxy.
+    In order to do so you will need the following ingredients:
 
-%ol
-  %li
-    %strong A widget
-    \- Ask Alan, Andrew or Dave to add a widget for you. They will then give you a WIDGET_NAME.
-  %li
-    %strong An API key
-    \- your key is
-    %strong= current_user.api_token
+  %ol
+    %li
+      %strong A widget
+      \- Ask Alan, Andrew or Dave to add a widget for you. They will then give you a WIDGET_NAME.
+    %li
+      %strong An API key
+      \- your key is
+      %strong= current_user.api_token
 
-%p
-  You can then send this by sending a POST request to
-  %strong= url
-  with the appropriate JSON.
+  %p
+    You can then send this by sending a POST request to
+    %strong= url
+    with the appropriate JSON.
 
-%h2 Examples
+.examples
+  %h2 Examples
 
-%pre
-  = "$ curl -d '{ \"token\" : \"#{current_user.api_token}\", \"data\" : <DATA> }' #{url}"
+  %pre
+    = "$ curl -d '{ \"token\" : \"#{current_user.api_token}\", \"data\" : <DATA> }' #{url}"
 
-%p
-  where
-  %strong WIDGET_NAME
-  is the name of the widget you were given and
-  %strong DATA
-  is one of the following depending on which type of widget you have.
-
-
-%h3 Graph
-
-
-%h3 List
+  %p
+    where
+    %strong WIDGET_NAME
+    is the name of the widget you were given and
+    %strong DATA
+    is one of the following depending on which type of widget you have.
 
 
-%h3 Meter
+  .example.graph
+    %h3 Graph
+
+    %h4 Bindings
+
+    %ul
+      %li title    (string)
+      %li value    (number)
+      %li moreinfo (string)
+
+    %h4 Data Example
+
+    %pre
+      = "{ \"title\" : \"test\", \"points\" : [ { \"x\" : 1980, \"y\" : 1323 }, { \"x\" : 1981, \"y\" : 5334 }, { \"x\" : 1982, \"y\" : 2344 } ], \"displayValue\" : 1323 } }"
 
 
-%h3 Number
+  .example.list
+    %h3 List
 
-%h4 Bindings
+    %h4 Bindings
 
-%ul
-  %li title    (string)
-  %li current  (number)
-  %li moreinfo (string)
+    %ul
+      %li title    (string)
+      %li
+        items      (collection)
+        %ul
+          %li label  (string)
+          %li value  (string|number)
+      %li moreinfo (string)
 
-%h4 Data Example
+    %h4 Data Example
 
-%pre
-  = "{ \"title\" : \"The title\", \"current\" : 34, \"moreinfo\" : \"The sub text\" }"
+    %pre
+      = "{ \"title\" : \"The title\", \"items\" : [{ \"label\" : \"label1\", \"value\" : \"A value\" }, { \"label\" : \"label2\", \"value\" : \"Another value\" }], \"moreinfo\" : \"The sub text\" }"
 
 
-%h3 Text
+  .example.meter
+    %h3 Meter
 
-%h4 Bindings
+    %h4 Bindings
 
-%ul
-  %li title    (string)
-  %li text     (string)
-  %li moreinfo (string)
+    %ul
+      %li title    (string)
+      %li value    (number)
+      %li moreinfo (string)
 
-%h4 Data Example
+    %h4 Data Example
 
-%pre
-  = "{ \"title\" : \"The title\", \"text\" : \"The main text\", \"moreinfo\" : \"The sub text\" }"
+    %pre
+      = "{ \"title\" : \"The title\", \"value\" : 34, \"moreinfo\" : \"The sub text\" }"
+
+
+  .example.number
+    %h3 Number
+
+    %h4 Bindings
+
+    %ul
+      %li title    (string)
+      %li current  (number)
+      %li moreinfo (string)
+
+    %h4 Data Example
+
+    %pre
+      = "{ \"title\" : \"The title\", \"current\" : 34, \"moreinfo\" : \"The sub text\" }"
+
+
+  .example.text
+    %h3 Text
+
+    %h4 Bindings
+
+    %ul
+      %li title    (string)
+      %li text     (string)
+      %li moreinfo (string)
+
+    %h4 Data Example
+
+    %pre
+      = "{ \"title\" : \"The title\", \"text\" : \"The main text\", \"moreinfo\" : \"The sub text\" }"
 
 
