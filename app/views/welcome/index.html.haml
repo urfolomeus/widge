@@ -1,6 +1,15 @@
 .container
   %h1 Welcome to the Dashboard Widget Manager
 
-  %p
-    Signup, request access to post widgets to one or more of the
-    dashboards and then register widgets for those dashboards.
+  - if logged_in?
+    %p
+      To get more information on how to use the Widget Proxy, please visit the
+      = link_to 'info', info_path
+      page.
+  -else
+    %p
+      Please
+      = link_to 'sign up', signup_path
+      for an account (or
+      = link_to 'sign in', signin_path
+      to an existing account) so that you have the API token required to post data to your widget.

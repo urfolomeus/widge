@@ -22,27 +22,53 @@
 
 %h2 Examples
 
-%h3 Clock
+%pre
+  = "$ curl -d '{ \"token\" : \"#{current_user.api_token}\", \"data\" : <DATA> }' #{url}"
 
-%h3 Comments
+%p
+  where
+  %strong WIDGET_NAME
+  is the name of the widget you were given and
+  %strong DATA
+  is one of the following depending on which type of widget you have.
+
 
 %h3 Graph
 
-%h3 iframe
-
-%h3 Image
 
 %h3 List
 
+
 %h3 Meter
+
 
 %h3 Number
 
-%h3 Text
+%h4 Bindings
+
+%ul
+  %li title    (string)
+  %li current  (number)
+  %li moreinfo (string)
+
+%h4 Data Example
 
 %pre
-  = "$ curl -d '{ \"token\" : \"#{current_user.api_token}\", \"data\" : { \"title\" : \"Hello\", \"title\" : \"Sample text\" } }' \\"
-  %br
-  = "#{url}"
+  = "{ \"title\" : \"The title\", \"current\" : 34, \"moreinfo\" : \"The sub text\" }"
+
+
+%h3 Text
+
+%h4 Bindings
+
+%ul
+  %li title    (string)
+  %li text     (string)
+  %li moreinfo (string)
+
+%h4 Data Example
+
+%pre
+  = "{ \"title\" : \"The title\", \"text\" : \"The main text\", \"moreinfo\" : \"The sub text\" }"
 
 

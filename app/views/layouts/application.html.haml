@@ -25,6 +25,8 @@
           %li{class: active_if_controller_path('welcome') }
             %a(href="/") Home
           - if logged_in?
+            %li{class: active_if_controller_path('info') }
+              = link_to 'Info', info_path
             %li
               = link_to 'Sign Out', '/signout', method: :delete
           - else
